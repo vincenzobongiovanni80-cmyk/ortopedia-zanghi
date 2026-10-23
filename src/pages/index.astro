@@ -238,7 +238,23 @@ const marquee = ["Pratiche ASL e INAIL", "Busti su misura", "Noleggio ausili", "
             </div>
           </div>
           <div class="map-frame">
-            <iframe src={MAPS_EMBED} loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mappa: Via Cherubini 22, Torino"></iframe>
+            <div class="map-gdpr" id="mappa-gdpr">
+              <div>
+                <p>Per rispettare la tua privacy, la mappa di Google viene caricata solo su tua richiesta. Cliccando accetti i cookie di Google Maps.</p>
+                <button class="btn btn-solid" type="button" id="carica-mappa">Mostra la mappa</button>
+              </div>
+            </div>
+            <script is:inline define:vars={{ MAPS_EMBED }}>
+              document.getElementById('carica-mappa').addEventListener('click', function () {
+                var box = document.getElementById('mappa-gdpr');
+                var f = document.createElement('iframe');
+                f.src = MAPS_EMBED;
+                f.title = 'Mappa: Via Cherubini 22, Torino';
+                f.loading = 'lazy';
+                f.referrerPolicy = 'no-referrer-when-downgrade';
+                box.replaceChildren(f);
+              });
+            </script>
           </div>
         </div>
 
@@ -269,7 +285,7 @@ const marquee = ["Pratiche ASL e INAIL", "Busti su misura", "Noleggio ausili", "
           </div>
           <label class="privacy">
             <input type="checkbox" required />
-            <span>Ho letto l'informativa privacy e acconsento al trattamento dei miei dati per essere ricontattato. *</span>
+            <span>Ho letto l'<a href="/privacy" target="_blank">informativa privacy</a> e acconsento al trattamento dei miei dati per essere ricontattato. *</span>
           </label>
           <div class="form-note"></div>
           <button class="btn btn-solid" type="submit" style="justify-content:center;width:100%">
@@ -325,7 +341,7 @@ const marquee = ["Pratiche ASL e INAIL", "Busti su misura", "Noleggio ausili", "
       </div>
       <div class="foot-bottom">
         <span>© 2026 Sanitaria Ortopedia di Elisabetta Zanghi · P.IVA 13496030019</span>
-        <span><a href="#">Privacy Policy</a> · <a href="#">Cookie Policy</a></span>
+        <span><a href="/privacy">Privacy Policy</a> · <a href="/privacy#cookie">Cookie Policy</a></span>
       </div>
     </div>
   </footer>
